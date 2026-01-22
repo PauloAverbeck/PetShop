@@ -1,58 +1,57 @@
 package com.petshop.PetShop.entity;
 
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "pet")
 public class Pet {
-    int id;
-    int ownerId;
-    String name;
-    String species;
-    String breed;
-    int age;
 
-    public int getId() {
-        return id;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
 
-    public int getOwnerId() {
-        return ownerId;
-    }
+    @Column(nullable = false, length = 100)
+    private String name;
 
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
-    }
+    @Column(nullable = false, length = 50)
+    private String species;
 
-    public String getName() {
-        return name;
-    }
+    @Column(length = 100)
+    private String breed;
 
-    public void setName(String name) {
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
+
+    protected Pet() {}
+
+    public Pet(User owner, String name, String species) {
+        this.owner = owner;
         this.name = name;
-    }
-
-    public String getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(String species) {
         this.species = species;
     }
 
+    public Long getId() {
+        return id;
+    }
+    public User getOwner() {
+        return owner;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getSpecies() {
+        return species;
+    }
     public String getBreed() {
         return breed;
     }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 }
