@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/petshop
+    url: jdbc:postgresql://127.0.0.1:5433/petshop
     username: petshop
     password: petshop
   flyway:
@@ -22,3 +22,4 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
+    org.flywaydb: debug

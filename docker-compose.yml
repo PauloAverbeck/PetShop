@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: petshop
       POSTGRES_PASSWORD: petshop
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - petshop_pg:/var/lib/postgresql/data
 volumes:
